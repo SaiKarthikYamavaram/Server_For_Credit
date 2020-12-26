@@ -35,6 +35,8 @@ const checker = async (no) => {
 	} catch (error) {
 		console.log(error.message);
 	}
+	page.waitForNavigation();
+	page.waitForRequest();
 	await browser.close();
 
 	return value;
