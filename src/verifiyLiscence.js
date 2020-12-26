@@ -38,12 +38,4 @@ const checker = async (no) => {
 	return value;
 };
 
-// console.log("====================================");
-// (async () => {
-// 	const k = await checker("TS21620200002687");
-// 	console.log(k);
-// })();
-
-// console.log("====================================");
-
 module.exports = checker;
