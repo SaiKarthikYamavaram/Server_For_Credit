@@ -25,4 +25,4 @@ app.use("/", (req, res, next) => {
 	res.send("<h1> first midleware: Hello Tutorials Point </h1>");
 });
 const server = http.createServer(app);
-server.listen(8000);
+server.listen(8000, () => console.log("server running "));
