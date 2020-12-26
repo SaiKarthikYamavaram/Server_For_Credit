@@ -16,11 +16,13 @@ const checker = async (no) => {
 				(document.querySelector("#ctl00_OnlineContent_txtDlNo").value = val),
 			no
 		);
-		await page.evaluate(() => {
-			document.querySelector("#ctl00_OnlineContent_btnGet").click();
+		await page.waitForNavigation();
+
+		await page.evaluate(async () => {
+			await document.querySelector("#ctl00_OnlineContent_btnGet").click();
 		});
 
-		await page.screenshot({ path: "screenshot.png" });
+		await page.waitForNavigation();
 		value = await page.evaluate(async () =>
 			Array.from(
 				document.querySelector("#ctl00_OnlineContent_gvLic").children[0]
@@ -31,12 +33,11 @@ const checker = async (no) => {
 					return i.textContent;
 				})
 		);
-		// console.clear();
 	} catch (error) {
 		console.log(error.message);
 	}
-	page.waitForNavigation();
-	page.waitForRequest();
+	await page.waitForNavigation();
+	await page.waitForRequest();
 	await browser.close();
 
 	return value;
