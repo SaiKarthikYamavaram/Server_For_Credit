@@ -17,7 +17,8 @@ const checker = async (no) => {
 		await page.evaluate(() => {
 			document.querySelector("#ctl00_OnlineContent_btnGet").click();
 		});
-		// await page.screenshot({ path: "screenshot.png" });
+
+		await page.screenshot({ path: "screenshot.png" });
 		value = await page.evaluate(async () =>
 			Array.from(
 				document.querySelector("#ctl00_OnlineContent_gvLic").children[0]
@@ -32,9 +33,8 @@ const checker = async (no) => {
 	} catch (error) {
 		console.log(error.message);
 	}
-    await browser.close();
-    
-    
+	await browser.close();
+
 	return value;
 };
 
