@@ -5,18 +5,19 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const checker = require("./src/verifiyLiscence");
+const cors = require("cors");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use("/", (req, res, next) => {
+app.use("/", cors(), (req, res, next) => {
 	next();
 });
 
-app.get("/", (req, res, next) => {
+app.get("/", cors(), (req, res, next) => {
 	res.send("Hello");
 });
 
-app.post("/license", async (req, res, next) => {
+app.post("/license", cors(), async (req, res, next) => {
 	try {
 		// console.log("data: ", req.body.regNo);
 		const value = await checker(req.body.regNo);
@@ -26,7 +27,7 @@ app.post("/license", async (req, res, next) => {
 	}
 });
 
-app.use("/", (req, res, next) => {
+app.use("/", cors(), (req, res, next) => {
 	res.send("<h1> first midleware: Hello Tutorials Point </h1>");
 });
 
