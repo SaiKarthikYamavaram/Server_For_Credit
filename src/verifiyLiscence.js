@@ -3,8 +3,10 @@ const puppeteer = require("puppeteer");
 const checker = async (no) => {
 	const browser = await puppeteer.launch({
 		args: ["--no-sandbox", "--disable-setuid-sandbox"],
+		headless: false,
 	});
 	const page = await browser.newPage();
+	await page.setDefaultNavigationTimeout(0);
 	var value = null;
 	await page.goto(
 		"https://tgtransport.net/TGCFSTONLINE/Reports/OnlineLicenceSearch.aspx",
