@@ -3,7 +3,6 @@ const puppeteer = require("puppeteer");
 const checker = async (no) => {
 	const browser = await puppeteer.launch({
 		args: ["--no-sandbox", "--disable-setuid-sandbox"],
-		headless: false,
 	});
 	const page = await browser.newPage();
 	await page.setDefaultNavigationTimeout(0);
@@ -18,7 +17,7 @@ const checker = async (no) => {
 				(document.querySelector("#ctl00_OnlineContent_txtDlNo").value = val),
 			no
 		);
-		await page.waitForNavigation();
+		// await page.waitForNavigation();
 
 		await page.evaluate(async () => {
 			await document.querySelector("#ctl00_OnlineContent_btnGet").click();
@@ -38,8 +37,7 @@ const checker = async (no) => {
 	} catch (error) {
 		console.log(error.message);
 	}
-	await page.waitForNavigation();
-	await page.waitForRequest();
+	// await page.waitForNavigation();
 	await browser.close();
 
 	return value;
