@@ -24,6 +24,7 @@ app.post("/license", cors(), async (req, res, next) => {
 		res.send(value);
 	} catch (error) {
 		console.log(error.message);
+		res.send("error");
 	}
 });
 
