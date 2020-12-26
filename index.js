@@ -18,14 +18,9 @@ app.get("/", cors(), (req, res, next) => {
 });
 
 app.post("/license", cors(), async (req, res, next) => {
-	try {
-		console.log("data: ", req.body.regNo);
-		const value = await checker(req.body.regNo);
-		res.send(value);
-	} catch (error) {
-		console.log(error.message);
-		res.send("error");
-	}
+	console.log("data: ", req.body.regNo);
+	const value = await checker(req.body.regNo);
+	res.send(value);
 });
 
 app.use("/", cors(), (req, res, next) => {
