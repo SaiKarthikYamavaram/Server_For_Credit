@@ -23,9 +23,11 @@ app.post("/license", async (req, res, next) => {
 	try {
 		console.log("data: ", req.body);
 		const value = await checker(req.body.regNo);
+		if (value === "Failed To access Values")
+			throw new Error("Failed to access Values");
 		res.send(value);
 	} catch (error) {
-		// res.s
+		res.status(422);
 		res.send("Some Error occurred please try again");
 	}
 });
