@@ -25,6 +25,7 @@ app.post("/license", async (req, res, next) => {
 		const value = await checker(req.body.regNo);
 		if (value === "Failed To access Values")
 			throw new Error("Failed to access Values");
+		res.status(200);
 		res.send(value);
 	} catch (error) {
 		res.status(422);
@@ -36,5 +37,6 @@ app.use("/", (req, res, next) => {
 	res.send("<h1> first midleware: Hello Tutorials Point </h1>");
 });
 
+// eslint-disable-next-line no-undef
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log("server running at", port));
