@@ -20,9 +20,14 @@ app.get("/", (req, res, next) => {
 });
 
 app.post("/license", async (req, res, next) => {
-	console.log("data: ", req.body);
-	const value = await checker(req.body.regNo);
-	res.send(value);
+	try {
+		console.log("data: ", req.body);
+		const value = await checker(req.body.regNo);
+		res.send(value);
+	} catch (error) {
+		// res.s
+		res.send("Some Error occurred please try again");
+	}
 });
 
 app.use("/", (req, res, next) => {
