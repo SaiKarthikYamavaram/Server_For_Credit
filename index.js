@@ -7,8 +7,10 @@ const app = express();
 const checker = require("./src/verifiyLiscence");
 const cors = require("cors");
 const morgan = require("morgan");
+var helmet = require("helmet");
 
 app.use(morgan("combined"));
+app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use("/", (req, res, next) => {
@@ -16,7 +18,7 @@ app.use("/", (req, res, next) => {
 });
 
 app.get("/", (req, res, next) => {
-	res.send("Hello");
+	res.send("<h1>Thank you for visiting us</h1>");
 });
 
 app.post("/license", async (req, res, next) => {
@@ -34,7 +36,7 @@ app.post("/license", async (req, res, next) => {
 });
 
 app.use("/", (req, res, next) => {
-	res.send("<h1> first midleware: Hello Tutorials Point </h1>");
+	res.send("<h1> MY API IS ALIVE </h1>");
 });
 
 // eslint-disable-next-line no-undef
